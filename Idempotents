@@ -1,23 +1,20 @@
-# the greatest difference mod n value for M(n) will 
-# always be n-2? the value mod 6 can never be prime...
-
-# import numpy as np
 
 def main():
     sum = 0
     whole_range = xrange(1, 10**4)
-    n=0
     n_array = [0]
     for i in whole_range:
-        n_array.append(i)
+        n_array.append(i**2)
         sum = sum + find(i+1, n_array)
     print sum
 
 
 def find(max, n_array):
     largest = 0
-    for value in n_array:
-        new_answer = value**2 % max
+    # because the results are palondromic, we can only look at the first half
+    # of the array 
+    for value in n_array[:max/2]:
+        new_answer = value % max
         if new_answer > largest:
             largest = new_answer
     return largest
